@@ -1,15 +1,23 @@
 package com.kermitlin.lighttherapymed.ui;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kermitlin.lighttherapymed.R;
+import com.kermitlin.lighttherapymed.ui.activePatLists.ActivePatListsFragment;
+import com.kermitlin.lighttherapymed.ui.activePatLists.AddActivePatListDialogFragment;
+import com.kermitlin.lighttherapymed.ui.therapyLists.TherapyListsFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -17,17 +25,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        initializeScreen();
     }
 
     @Override
@@ -50,5 +49,90 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    public void initializeScreen() {
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        /**
+         * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
+         **/
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setAdapter(adapter);
+        /**
+         * Setup the mTabLayout with view pager
+         */
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void showAddActivePatListDialog(View view) {
+        /* Create an instance of the dialog fragment and show it */
+        DialogFragment dialog = AddActivePatListDialogFragment.newInstance();
+        dialog.show(MainActivity.this.getFragmentManager(), "AddListDialogFragment");
+    }
+
+    public class SectionPagerAdapter extends FragmentStatePagerAdapter {
+
+        public SectionPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        /**
+         * Use positions (0 and 1) to find and instantiate fragments with newInstance()
+         *
+         * @param position
+         */
+        @Override
+        public Fragment getItem(int position) {
+
+            Fragment fragment = null;
+
+            /**
+             * Set fragment to different fragments depending on position in ViewPager
+             */
+            switch (position) {
+                case 0:
+                    fragment = ActivePatListsFragment.newInstance();
+                    break;
+                case 1:
+                    fragment = TherapyListsFragment.newInstance();
+                    break;
+                default:
+                    fragment = ActivePatListsFragment.newInstance();
+                    break;
+            }
+
+            return fragment;
+        }
+
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        /**
+         * Set string resources as titles for each fragment by it's position
+         *
+         * @param position
+         */
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getString(R.string.pager_title_active_pat_lists);
+                case 1:
+                default:
+                    return getString(R.string.pager_title_therapy_lists);
+            }
+        }
     }
 }

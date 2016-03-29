@@ -1,4 +1,4 @@
-package com.kermitlin.lighttherapymed.ui.therapyLists;
+package com.kermitlin.lighttherapymed.ui.activePatLists;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,10 +12,10 @@ import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
-public class TherapyListsFragment extends Fragment {
+public class ActivePatListsFragment extends Fragment {
     private ListView mListView;
 
-    public TherapyListsFragment() {
+    public ActivePatListsFragment() {
         /* Required empty public constructor */
     }
 
@@ -23,8 +23,8 @@ public class TherapyListsFragment extends Fragment {
      * Create fragment and pass bundle with data as it's arguments
      * Right now there are not arguments...but eventually there will be.
      */
-    public static TherapyListsFragment newInstance() {
-        TherapyListsFragment fragment = new TherapyListsFragment();
+    public static ActivePatListsFragment newInstance() {
+        ActivePatListsFragment fragment = new ActivePatListsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -46,7 +46,7 @@ public class TherapyListsFragment extends Fragment {
         /**
          * Initialize UI elements
          */
-        View rootView = inflater.inflate(R.layout.fragment_therapy_lists, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_active_pat_lists, container, false);
         initializeScreen(rootView);
 
         /**
