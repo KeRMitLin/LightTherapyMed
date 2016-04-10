@@ -13,7 +13,7 @@ public class TherapyList {
     private String listName;
     private String owner;
     private HashMap<String, Object> timestampCreated;
-
+    private boolean done;
 
     /**
      * Required public constructor
@@ -33,6 +33,7 @@ public class TherapyList {
         this.listName = listName;
         this.owner = owner;
         this.timestampCreated = timestampCreated;
+        this.done = false;
     }
 
     public String getListName() {
@@ -52,5 +53,8 @@ public class TherapyList {
         return (long) timestampCreated.get(Constants.FIREBASE_PROPERTY_TIMESTAMP);
     }
 
+    public boolean isBought() {
+        return done;
+    }
 }
 
