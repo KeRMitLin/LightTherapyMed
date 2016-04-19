@@ -1,4 +1,4 @@
-package com.kermitlin.lighttherapymed.ui.activePatLists;
+package com.kermitlin.lighttherapymed.ui.deployedLists;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,10 +12,10 @@ import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
-public class ActivePatListsFragment extends Fragment {
+public class DeployedListsFragment extends Fragment {
     private ListView mListView;
 
-    public ActivePatListsFragment() {
+    public DeployedListsFragment() {
         /* Required empty public constructor */
     }
 
@@ -23,8 +23,8 @@ public class ActivePatListsFragment extends Fragment {
      * Create fragment and pass bundle with data as it's arguments
      * Right now there are not arguments...but eventually there will be.
      */
-    public static ActivePatListsFragment newInstance() {
-        ActivePatListsFragment fragment = new ActivePatListsFragment();
+    public static DeployedListsFragment newInstance() {
+        DeployedListsFragment fragment = new DeployedListsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -52,14 +52,14 @@ public class ActivePatListsFragment extends Fragment {
         /**
          * Create Firebase references
          */
-        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_ACTIVE_LISTS);
+        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
 
 //        /**
 //         * Add ValueEventListeners to Firebase references
 //         * to control get data and control behavior and visibility of elements
 //         */
 //        mActiveListAdapter = new ActiveListAdapter(getActivity(), ShoppingList.class,
-//                R.layout.single_active_list, activeListsRef);
+//                R.layout.single_therapy_list, activeListsRef);
 //
 //        /**
 //         * Set the adapter to the mListView

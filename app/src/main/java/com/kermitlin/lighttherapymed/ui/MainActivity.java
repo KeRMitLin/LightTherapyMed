@@ -2,21 +2,20 @@ package com.kermitlin.lighttherapymed.ui;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kermitlin.lighttherapymed.R;
-import com.kermitlin.lighttherapymed.ui.activePatLists.ActivePatListsFragment;
-import com.kermitlin.lighttherapymed.ui.activePatLists.AddActivePatListDialogFragment;
+import com.kermitlin.lighttherapymed.ui.deployedLists.DeployedListsFragment;
+import com.kermitlin.lighttherapymed.ui.deployedLists.AddDeployedListDialogFragment;
+import com.kermitlin.lighttherapymed.ui.therapyLists.AddTherapyListDialogFragment;
 import com.kermitlin.lighttherapymed.ui.therapyLists.TherapyListsFragment;
 
 public class MainActivity extends BaseActivity {
@@ -73,10 +72,19 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void showAddActivePatListDialog(View view) {
+    public void showAddDeployedListDialog(View view) {
         /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = AddActivePatListDialogFragment.newInstance();
-        dialog.show(MainActivity.this.getFragmentManager(), "AddListDialogFragment");
+        DialogFragment dialog = AddDeployedListDialogFragment.newInstance();
+        dialog.show(MainActivity.this.getFragmentManager(), "AddDeployedListDialogFragment");
+    }
+
+    /**
+     * Create an instance of the AddMeal dialog fragment and show it
+     */
+    public void showAddTherapyListDialog(View view) {
+        /* Create an instance of the dialog fragment and show it */
+        DialogFragment dialog = AddTherapyListDialogFragment.newInstance();
+        dialog.show(MainActivity.this.getFragmentManager(), "AddTherapyListDialogFragment");
     }
 
     public class SectionPagerAdapter extends FragmentStatePagerAdapter {
@@ -100,19 +108,18 @@ public class MainActivity extends BaseActivity {
              */
             switch (position) {
                 case 0:
-                    fragment = ActivePatListsFragment.newInstance();
+                    fragment = DeployedListsFragment.newInstance();
                     break;
                 case 1:
                     fragment = TherapyListsFragment.newInstance();
                     break;
                 default:
-                    fragment = ActivePatListsFragment.newInstance();
+                    fragment = DeployedListsFragment.newInstance();
                     break;
             }
 
             return fragment;
         }
-
 
         @Override
         public int getCount() {
@@ -128,7 +135,7 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_active_pat_lists);
+                    return getString(R.string.pager_title_deployed_lists);
                 case 1:
                 default:
                     return getString(R.string.pager_title_therapy_lists);

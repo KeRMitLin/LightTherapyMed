@@ -11,9 +11,8 @@ import java.util.HashMap;
 
 public class TherapyList {
     private String listName;
-    private String owner;
-    private HashMap<String, Object> timestampCreated;
-    private boolean done;
+    private Boolean toggleSwitch;
+    private HashMap<String, Object> timestampEdit;
 
     /**
      * Required public constructor
@@ -27,34 +26,29 @@ public class TherapyList {
      * changed time to what is stored in ServerValue.TIMESTAMP
      *
      * @param listName
-     * @param owner
      */
-    public TherapyList(String listName, String owner, HashMap<String, Object> timestampCreated) {
+    public TherapyList(String listName, boolean toggleSwitch, HashMap<String, Object> timestampEdit) {
         this.listName = listName;
-        this.owner = owner;
-        this.timestampCreated = timestampCreated;
-        this.done = false;
+        this.toggleSwitch = toggleSwitch;
+        this.timestampEdit = timestampEdit;
     }
 
     public String getListName() {
         return listName;
     }
 
-    public String getOwner() {
-        return owner;
+    public boolean isToggleSwitch() {
+        return toggleSwitch;
     }
 
-    public HashMap<String, Object> getTimestampCreated() {
-        return timestampCreated;
+    public HashMap<String, Object> getTimestampEdit() {
+        return timestampEdit;
     }
 
     @JsonIgnore
-    public long getTimestampCreatedLong() {
-        return (long) timestampCreated.get(Constants.FIREBASE_PROPERTY_TIMESTAMP);
-    }
-
-    public boolean isBought() {
-        return done;
+    public long getTimestampEditLong() {
+        return (long) timestampEdit.get(Constants.FIREBASE_PROPERTY_TIMESTAMP);
     }
 }
+
 

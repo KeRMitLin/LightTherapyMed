@@ -1,5 +1,6 @@
 package com.kermitlin.lighttherapymed.ui.therapyLists;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
+import com.kermitlin.lighttherapymed.model.TherapyList;
+import com.kermitlin.lighttherapymed.ui.therapyListContent.TherapyListContentActivity;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
 public class TherapyListsFragment extends Fragment {
+    private TherapyListAdapter mTherapyListAdapter;
     private ListView mListView;
 
     public TherapyListsFragment() {
@@ -52,19 +56,19 @@ public class TherapyListsFragment extends Fragment {
         /**
          * Create Firebase references
          */
-        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_ACTIVE_LISTS);
+        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
 
-//        /**
-//         * Add ValueEventListeners to Firebase references
-//         * to control get data and control behavior and visibility of elements
-//         */
-//        mActiveListAdapter = new ActiveListAdapter(getActivity(), ShoppingList.class,
-//                R.layout.single_active_list, activeListsRef);
-//
-//        /**
-//         * Set the adapter to the mListView
-//         */
-//        mListView.setAdapter(mActiveListAdapter);
+        /**
+         * Add ValueEventListeners to Firebase references
+         * to control get data and control behavior and visibility of elements
+         */
+        mTherapyListAdapter = new TherapyListAdapter(getActivity(), TherapyList.class,
+                R.layout.single_therapy_list, activeListsRef);
+
+        /**
+         * Set the adapter to the mListView
+         */
+        mListView.setAdapter(mTherapyListAdapter);
 
         /**
          * Set interactive bits, such as click events and adapters
@@ -72,17 +76,17 @@ public class TherapyListsFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ShoppingList selectedList = mActiveListAdapter.getItem(position);
-//                if (selectedList != null) {
-//                    Intent intent = new Intent(getActivity(), ActiveListDetailsActivity.class);
-//                    /* Get the list ID using the adapter's get ref method to get the Firebase
-//                     * ref and then grab the key.
-//                     */
-//                    String listId = mActiveListAdapter.getRef(position).getKey();
-//                    intent.putExtra(Constants.KEY_LIST_ID, listId);
-//                    /* Starts an active showing the details for the selected list */
-//                    startActivity(intent);
-//                }
+                TherapyList selectedList = mTherapyListAdapter.getItem(position);
+                if (selectedList != null) {
+                    Intent intent = new Intent(getActivity(), TherapyListContentActivity.class);
+                    /* Get the list ID using the adapter's get ref method to get the Firebase
+                     * ref and then grab the key.
+                     */
+                    String listId = mTherapyListAdapter.getRef(position).getKey();
+                    intent.putExtra(Constants.KEY_LIST_ID, listId);
+                    /* Starts an active showing the details for the selected list */
+                    startActivity(intent);
+                }
             }
         });
 
@@ -92,7 +96,7 @@ public class TherapyListsFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        mActiveListAdapter.cleanup();
+        mTherapyListAdapter.cleanup();
     }
 
     /**

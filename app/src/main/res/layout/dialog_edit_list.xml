@@ -7,13 +7,12 @@
     android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.kermitlin.lighttherapymed.ui.MainActivity">
+    tools:context=".ui.therapyListContent.TherapyListContentActivity">
 
     <EditText
-        android:id="@+id/edit_text_list_name"
+        android:id="@+id/edit_text_list_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_add_therapy_list"
         android:imeOptions="actionDone|flagNoExtractUi"
         android:inputType="textCapWords"
         android:textColor="@color/black"

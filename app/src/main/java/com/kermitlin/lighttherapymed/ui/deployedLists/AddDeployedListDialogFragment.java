@@ -1,4 +1,4 @@
-package com.kermitlin.lighttherapymed.ui.activePatLists;
+package com.kermitlin.lighttherapymed.ui.deployedLists;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -13,25 +13,20 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.ServerValue;
 import com.kermitlin.lighttherapymed.R;
-import com.kermitlin.lighttherapymed.utils.Constants;
-
-import java.util.HashMap;
 
 /**
  * Adds a new active pat list
  */
-public class AddActivePatListDialogFragment extends DialogFragment {
+public class AddDeployedListDialogFragment extends DialogFragment {
     EditText mEditTextListName;
 
     /**
      * Public static constructor that creates fragment and
      * passes a bundle with data into it when adapter is created
      */
-    public static AddActivePatListDialogFragment newInstance() {
-        AddActivePatListDialogFragment addListDialogFragment = new AddActivePatListDialogFragment();
+    public static AddDeployedListDialogFragment newInstance() {
+        AddDeployedListDialogFragment addListDialogFragment = new AddDeployedListDialogFragment();
         Bundle bundle = new Bundle();
         addListDialogFragment.setArguments(bundle);
         return addListDialogFragment;
