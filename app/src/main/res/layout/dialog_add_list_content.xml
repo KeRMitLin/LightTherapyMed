@@ -9,13 +9,382 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.kermitlin.lighttherapymed.ui.MainActivity">
 
-    <EditText
-        android:id="@+id/edit_text_list_name"
+    <TextView
+        android:id="@+id/text_view_color"
+        style="@style/ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color:" />
+
+    <LinearLayout
+        android:id="@+id/layout_color_button_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_add_therapy_list"
-        android:imeOptions="actionDone|flagNoExtractUi"
-        android:inputType="textCapWords"
-        android:textColor="@color/black"
-        android:textColorHint="@color/dark_grey" />
+        android:layout_below="@+id/text_view_color"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <Button
+            android:id="@+id/bt_red"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_red" />
+
+        <Button
+            android:id="@+id/bt_orange"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_orange" />
+
+        <Button
+            android:id="@+id/bt_yellow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_yellow" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_check_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_color_button_2"
+        android:layout_below="@+id/text_view_color"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+        <ImageView
+            android:id="@+id/check_red"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_orange"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_yellow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_color_button_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_color_button_1"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <Button
+            android:id="@+id/bt_green"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_green" />
+
+        <Button
+            android:id="@+id/bt_blue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_blue" />
+
+        <Button
+            android:id="@+id/bt_purple"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_purple" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_check_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_color_button_3"
+        android:layout_below="@+id/layout_color_button_1"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+        <ImageView
+            android:id="@+id/check_green"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_blue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_purple"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_color_button_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_color_button_2"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <Button
+            android:id="@+id/bt_black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_black" />
+
+        <Button
+            android:id="@+id/bt_white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_white" />
+
+        <Button
+            android:id="@+id/bt_random"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".33"
+            android:background="@drawable/btn_olive" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_check_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_view_hz"
+        android:layout_below="@+id/layout_color_button_2"
+        android:paddingEnd="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_small">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+        <ImageView
+            android:id="@+id/check_black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_white"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".13" />
+
+        <ImageView
+            android:id="@+id/check_random"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_weight=".2"
+            android:background="@drawable/check_black"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".07" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_view_hz"
+        style="@style/ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_color_button_3"
+        android:text="Frequency:" />
+
+    <LinearLayout
+        android:id="@+id/layout_hz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_hz"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_add_frequency"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text=" Hz"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/list_edit_time_text_size" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_view_time"
+        style="@style/ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_hz"
+        android:text="Continues Time:" />
+
+    <LinearLayout
+        android:id="@+id/layout_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_time"
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_add_time"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:inputType="numberSigned"
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text=" 秒"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/list_edit_time_text_size" />
+
+    </LinearLayout>
+
 </RelativeLayout>

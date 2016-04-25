@@ -32,7 +32,8 @@
      -->
     <!-- Add List Dialog-->
     <string name="hint_add_therapy_list">Create a list</string>
-
+    <string name="hint_add_frequency">Enter Frequency</string>
+    <string name="hint_add_time">Enter Continues time</string>
     <!-- List of Shopping Lists Strings -->
     <string name="edit_time">Edit Time : </string>
     <string name="person_shopping">%d person shopping</string>
@@ -53,6 +54,7 @@
     <!-- Edit List and Add Item Dialogs -->
     <string name="positive_button_add_list_item">Add item</string>
     <string name="positive_button_edit_item">Edit name</string>
+    <string name="positive_button_add_item">Confirm</string>
     <string name="negative_button_cancel">Cancel</string>
     <string name="dialog_message_are_you_sure_remove_list">Are you sure you want to remove this list?</string>
     <string name="dialog_message_are_you_sure_remove_item">Are you sure you want to remove this item?</string>
@@ -206,5 +208,7 @@
 
 
     <!-- Values -->
+
+
 
 </resources>

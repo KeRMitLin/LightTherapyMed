@@ -241,36 +241,36 @@ public class TherapyListContentActivity extends BaseActivity {
      */
     public void showAddTherapyListContentDialog(View view) {
 
-//        /* Create an instance of the dialog fragment and show it */
-//        DialogFragment dialog = AddListItemDialogFragment.newInstance(mShoppingList, mListId, mEncodedEmail);
-//        dialog.show(getFragmentManager(), "AddListItemDialogFragment");
+        /* Create an instance of the dialog fragment and show it */
+        DialogFragment dialog = AddListContentDialogFragment.newInstance(mTherapyList, mListId);
+        dialog.show(getFragmentManager(), "AddListContentDialogFragment");
 
-        //insertTest
-        Firebase mInsertRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LIST_CONTENT).
-                child(mListId);
-        Firebase newListRef = mInsertRef.push();
-
-        /**
-         * Set raw version of date to the ServerValue.TIMESTAMP value and save into
-         * timestampCreatedMap
-         */
-        HashMap<String, Object> timestampCreated = new HashMap<>();
-
-            /* Build the shopping list */
-        TherapyListContent newTherapyListContent = new TherapyListContent("RED", "3", "10");
-
-            /* Add the shopping list */
-        newListRef.setValue(newTherapyListContent);
-
-
-        /**
-         * Refresh editTime in TherapyList
-         */
-        Firebase listsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS).child(mListId).
-                child(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT);
-        HashMap<String, Object> timestampEdit = new HashMap<String, Object>();
-        timestampEdit.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
-        listsRef.updateChildren(timestampEdit);
+//        //insertTest
+//        Firebase mInsertRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LIST_CONTENT).
+//                child(mListId);
+//        Firebase newListRef = mInsertRef.push();
+//
+//        /**
+//         * Set raw version of date to the ServerValue.TIMESTAMP value and save into
+//         * timestampCreatedMap
+//         */
+//        HashMap<String, Object> timestampCreated = new HashMap<>();
+//
+//            /* Build the shopping list */
+//        TherapyListContent newTherapyListContent = new TherapyListContent("RED", "3", "10");
+//
+//            /* Add the shopping list */
+//        newListRef.setValue(newTherapyListContent);
+//
+//
+//        /**
+//         * Refresh editTime in TherapyList
+//         */
+//        Firebase listsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS).child(mListId).
+//                child(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT);
+//        HashMap<String, Object> timestampEdit = new HashMap<String, Object>();
+//        timestampEdit.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
+//        listsRef.updateChildren(timestampEdit);
     }
 
     /**

@@ -1,21 +1,13 @@
 package com.kermitlin.lighttherapymed.ui.therapyListContent;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.ServerValue;
 import com.kermitlin.lighttherapymed.R;
+import com.kermitlin.lighttherapymed.model.TherapyList;
 import com.kermitlin.lighttherapymed.model.TherapyListContent;
 import com.kermitlin.lighttherapymed.ui.therapyLists.AddTherapyListDialogFragment;
 import com.kermitlin.lighttherapymed.utils.Constants;
@@ -25,7 +17,8 @@ import java.util.HashMap;
 /**
  * Adds a new active pat list
  */
-public class AddListContentDialogFragment extends DialogFragment {
+public class AddListContentDialogFragment extends AddListItemDialogFragment {
+    private static final String LOG_TAG = TherapyListContent.class.getSimpleName();
     private EditText mEditTextListName;
     private String listID;
 
@@ -33,12 +26,13 @@ public class AddListContentDialogFragment extends DialogFragment {
      * Public static constructor that creates fragment and
      * passes a bundle with data into it when adapter is created
      */
-    public static AddTherapyListDialogFragment newInstance(String listId) {
-        AddTherapyListDialogFragment addTherapyListContentDialogFragment = new AddTherapyListDialogFragment();
-        Bundle bundle = new Bundle();
+    public static AddListContentDialogFragment newInstance(TherapyList therapyList,String listId) {
+        AddListContentDialogFragment addListContentDialogFragment = new AddListContentDialogFragment();
+        Bundle bundle = AddListItemDialogFragment.newInstanceHelper(therapyList,
+                R.layout.dialog_add_list_content, listId);
         bundle.putString(Constants.KEY_LIST_ID, listId);
-        addTherapyListContentDialogFragment.setArguments(bundle);
-        return addTherapyListContentDialogFragment;
+        addListContentDialogFragment.setArguments(bundle);
+        return addListContentDialogFragment;
     }
 
     /**
@@ -50,80 +44,54 @@ public class AddListContentDialogFragment extends DialogFragment {
         listID = getArguments().getString(Constants.KEY_LIST_ID);
     }
 
-    /**
-     * Open the keyboard automatically when the dialog fragment is opened
-     */
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomTheme_Dialog);
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View rootView = inflater.inflate(R.layout.dialog_add_list, null);
-        mEditTextListName = (EditText) rootView.findViewById(R.id.edit_text_list_name);
 
-        /**
-         * Call addShoppingList() when user taps "Done" keyboard action
-         */
-        mEditTextListName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    addTherapyListContent();
-                }
-                return true;
-            }
-        });
+        /** {@link EditListDialogFragment#createDialogHelper(int)} is a
+         * superclass method that creates the dialog
+         **/
+        Dialog dialog = super.createDialogHelper(R.string.positive_button_add_item);
 
-        /* Inflate and set the layout for the dialog */
-        /* Pass null as the parent view because its going in the dialog layout*/
-        builder.setView(rootView)
-                /* Add action buttons */
-                .setPositiveButton(R.string.positive_button_create, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        addTherapyListContent();
-                    }
-                });
-
-        return builder.create();
+        return dialog;
     }
 
     /**
      * Add new active pat list
      */
     public void addTherapyListContent() {
-        String userEnteredName = mEditTextListName.getText().toString();
+        String userSelectColor = mSelectColor;
+        String userEnteredHz = mEditTextHz.getText().toString();
+        String userEnteredTime = mEditTextTime.getText().toString();
 
         /**
          * If EditText input is not empty
          */
-        if (!userEnteredName.equals("")) {
+        if (!userEnteredHz.equals("") && !userEnteredTime.equals("")) {
 
-            /**
-             * Create Firebase references
-             */
-            Firebase listContentRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LIST_CONTENT).child(listID);
-            Firebase newListRef = listContentRef.push();
+            Firebase mInsertRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LIST_CONTENT).
+                    child(listID);
+            Firebase newListRef = mInsertRef.push();
 
             /**
              * Set raw version of date to the ServerValue.TIMESTAMP value and save into
              * timestampCreatedMap
              */
             HashMap<String, Object> timestampCreated = new HashMap<>();
-            timestampCreated.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
             /* Build the shopping list */
-            TherapyListContent newTherapyListContent = new TherapyListContent(userEnteredName, "", "");
+            TherapyListContent newTherapyListContent = new TherapyListContent(mSelectColor, userEnteredHz, userEnteredTime);
 
             /* Add the shopping list */
             newListRef.setValue(newTherapyListContent);
+
+            /**
+             * Refresh editTime in TherapyList
+             */
+            Firebase listsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS).child(mListId).
+                    child(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT);
+            HashMap<String, Object> timestampEdit = new HashMap<String, Object>();
+            timestampEdit.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
+            listsRef.updateChildren(timestampEdit);
 
             /* Close the dialog fragment */
             AddListContentDialogFragment.this.getDialog().cancel();
