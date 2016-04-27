@@ -26,20 +26,20 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
     ImageView check_red, check_orange, check_yellow, check_green, check_blue, check_purple, check_black,
             check_white, check_random;
     EditText mEditTextHz, mEditTextTime;
-    String mSelectColor;
+    String mListName, mSelectColor;
     int mResource;
 
     /**
      * Helper method that creates a basic bundle of all of the information needed to change
      * values in a shopping list.
      *
-     * @param therapyList
      * @param resource
      * @return
      */
-    protected static Bundle newInstanceHelper(TherapyList therapyList, int resource, String listId) {
+    protected static Bundle newInstanceHelper(int resource, String listId, String listName) {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.KEY_LIST_ID, listId);
+        bundle.putString(Constants.KEY_LIST_NAME, listName);
         bundle.putInt(Constants.KEY_LAYOUT_RESOURCE, resource);
         return bundle;
     }
@@ -51,6 +51,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mListId = getArguments().getString(Constants.KEY_LIST_ID);
+        mListName = getArguments().getString(Constants.KEY_LIST_NAME);
         mResource = getArguments().getInt(Constants.KEY_LAYOUT_RESOURCE);
     }
 
@@ -93,11 +94,9 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
         mEditTextHz = (EditText) rootView.findViewById(R.id.edit_text_hz);
         mEditTextTime = (EditText) rootView.findViewById(R.id.edit_text_time);
 
-
-
         bt_red.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "紅";
+                mSelectColor = "紅色";
 
                 check_red.setVisibility(View.VISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -113,7 +112,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_orange.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "橘";
+                mSelectColor = "橘色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.VISIBLE);
@@ -129,7 +128,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_yellow.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "黃";
+                mSelectColor = "黃色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -145,7 +144,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_green.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "綠";
+                mSelectColor = "綠色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -161,7 +160,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_blue.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "藍";
+                mSelectColor = "藍色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -177,7 +176,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_purple.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "紫";
+                mSelectColor = "紫色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -193,7 +192,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_black.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "黑";
+                mSelectColor = "黑色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -209,7 +208,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_white.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "白";
+                mSelectColor = "白色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);
@@ -225,7 +224,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
 
         bt_random.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                mSelectColor = "彩";
+                mSelectColor = "彩色";
 
                 check_red.setVisibility(View.INVISIBLE);
                 check_orange.setVisibility(View.INVISIBLE);

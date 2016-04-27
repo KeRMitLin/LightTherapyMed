@@ -83,7 +83,9 @@ public class TherapyListsFragment extends Fragment {
                      * ref and then grab the key.
                      */
                     String listId = mTherapyListAdapter.getRef(position).getKey();
+                    String listName = selectedList.getListName();
                     intent.putExtra(Constants.KEY_LIST_ID, listId);
+                    intent.putExtra(Constants.KEY_LIST_NAME, listName);
                     /* Starts an active showing the details for the selected list */
                     startActivity(intent);
                 }

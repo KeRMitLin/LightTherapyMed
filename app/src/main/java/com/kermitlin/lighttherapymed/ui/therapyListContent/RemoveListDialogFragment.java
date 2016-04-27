@@ -25,7 +25,7 @@ public class RemoveListDialogFragment extends DialogFragment {
     /**
      * Public static constructor that creates fragment and passes a bundle with data into it when adapter is created
      */
-    public static RemoveListDialogFragment newInstance(TherapyList therapyList, String listId) {
+    public static RemoveListDialogFragment newInstance(String listId) {
         RemoveListDialogFragment removeListDialogFragment = new RemoveListDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.KEY_LIST_ID, listId);

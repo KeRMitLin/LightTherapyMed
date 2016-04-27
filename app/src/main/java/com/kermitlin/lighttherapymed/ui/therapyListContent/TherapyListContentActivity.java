@@ -3,7 +3,7 @@ package com.kermitlin.lighttherapymed.ui.therapyListContent;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,10 +29,9 @@ public class TherapyListContentActivity extends BaseActivity {
     private ValueEventListener mTherapyListRefListener;
     private TherapyListContentAdapter mTherapyListContentAdapter;
     private ListView mListView;
-    private String mListId;
+    private String mListId, mListName;
     private Firebase mTherapyListRef;
-
-    private TherapyList mTherapyList;
+    private TherapyList therapyList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -42,6 +41,7 @@ public class TherapyListContentActivity extends BaseActivity {
         /* Get the push ID from the extra passed by ShoppingListFragment */
         Intent intent = this.getIntent();
         mListId = intent.getStringExtra(Constants.KEY_LIST_ID);
+        mListName = intent.getStringExtra(Constants.KEY_LIST_NAME);
         if (mListId == null) {
             /* No point in continuing without a valid ID. */
             finish();
@@ -76,32 +76,16 @@ public class TherapyListContentActivity extends BaseActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                /**
-                 * Saving the most recent version of current shopping list into mShoppingList if present
-                 * finish() the activity if the list is null (list was removed or unshared by it's owner
-                 * while current user is in the list details activity)
-                 */
-                TherapyList therapyList = snapshot.getValue(TherapyList.class);
+                therapyList = snapshot.getValue(TherapyList.class);
 
                 if (therapyList == null) {
                     finish();
-                    /**
-                     * Make sure to call return, otherwise the rest of the method will execute,
-                     * even after calling finish.
-                     */
+
                     return;
                 }
-                mTherapyList = therapyList;
-                /**
-                 * Pass the shopping list to the adapter if it is not null.
-                 * We do this here because mShoppingList is null when first created.
-                 */
-                mTherapyListContentAdapter.setTherapyList(mTherapyList);
 
-                /* Calling invalidateOptionsMenu causes onCreateOptionsMenu to be called */
                 invalidateOptionsMenu();
 
-                /* Set title appropriately. */
                 setTitle(therapyList.getListName());
             }
 
@@ -121,6 +105,7 @@ public class TherapyListContentActivity extends BaseActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 /* Check that the view is not the empty footer item */
 //                if (view.getId() != R.id.list_view_footer_empty) {
 //                    final ShoppingListItem selectedListItem = mActiveListItemAdapter.getItem(position);
@@ -201,6 +186,13 @@ public class TherapyListContentActivity extends BaseActivity {
             removeList();
             return true;
         }
+        if (id == android.R.id.home) {
+
+            refreshListName();
+
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -227,12 +219,66 @@ public class TherapyListContentActivity extends BaseActivity {
         mListView.addFooterView(footer);
     }
 
+    public void refreshListName() {
+
+        if (!mTherapyListContentAdapter.isEmpty()) {
+            String originTitle, newTitle, nickColor;
+            double totalTime = 0.0, firstHz, secondHz = 0.0;
+            int phaseNum = 0;
+
+            originTitle = therapyList.getListName();
+            if (originTitle.contains("-")) {
+                String[] tempTitle = originTitle.split(" - ");
+                originTitle = tempTitle[0];
+            }
+
+            nickColor = mTherapyListContentAdapter.getItem(0).getColor();
+            phaseNum = mTherapyListContentAdapter.getCount();
+
+            for (int i = 0; i < phaseNum; i = i + 1) {
+                totalTime = totalTime + Double.parseDouble(mTherapyListContentAdapter.getItem(i).
+                        getTime());
+            }
+
+            firstHz = Double.parseDouble(mTherapyListContentAdapter.getItem(0).getHz());
+            if (phaseNum > 1) {
+                secondHz = Double.parseDouble(mTherapyListContentAdapter.getItem(1).getHz());
+            }
+
+            if (secondHz == 0.0) {
+                newTitle = originTitle + " - " + nickColor + " - " + phaseNum + " - " + totalTime +
+                        " - " + firstHz;
+            } else {
+                newTitle = originTitle + " - " + nickColor + " - " + phaseNum + " - " + totalTime +
+                        " - " + firstHz + " - " + secondHz;
+            }
+
+            //Input to Firebase
+            Firebase therapyListRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS).
+                    child(mListId);
+
+                    /* Make a Hashmap for the specific properties you are changing */
+            HashMap<String, Object> updatedProperties = new HashMap<String, Object>();
+            updatedProperties.put(Constants.FIREBASE_PROPERTY_LIST_NAME, newTitle);
+
+                    /* Add the timestamp for last changed to the updatedProperties Hashmap */
+            HashMap<String, Object> changedTimestampMap = new HashMap<>();
+            changedTimestampMap.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
+
+                    /* Add the updated timestamp */
+            updatedProperties.put(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT, changedTimestampMap);
+
+                    /* Do the update */
+            therapyListRef.updateChildren(updatedProperties);
+        }
+    }
+
     /**
      * Remove current shopping list and its items from all nodes
      */
     public void removeList() {
         /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = RemoveListDialogFragment.newInstance(mTherapyList, mListId);
+        DialogFragment dialog = RemoveListDialogFragment.newInstance(mListId);
         dialog.show(getFragmentManager(), "RemoveListDialogFragment");
     }
 
@@ -242,35 +288,8 @@ public class TherapyListContentActivity extends BaseActivity {
     public void showAddTherapyListContentDialog(View view) {
 
         /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = AddListContentDialogFragment.newInstance(mTherapyList, mListId);
+        DialogFragment dialog = AddListContentDialogFragment.newInstance(mListId, mListName);
         dialog.show(getFragmentManager(), "AddListContentDialogFragment");
-
-//        //insertTest
-//        Firebase mInsertRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LIST_CONTENT).
-//                child(mListId);
-//        Firebase newListRef = mInsertRef.push();
-//
-//        /**
-//         * Set raw version of date to the ServerValue.TIMESTAMP value and save into
-//         * timestampCreatedMap
-//         */
-//        HashMap<String, Object> timestampCreated = new HashMap<>();
-//
-//            /* Build the shopping list */
-//        TherapyListContent newTherapyListContent = new TherapyListContent("RED", "3", "10");
-//
-//            /* Add the shopping list */
-//        newListRef.setValue(newTherapyListContent);
-//
-//
-//        /**
-//         * Refresh editTime in TherapyList
-//         */
-//        Firebase listsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS).child(mListId).
-//                child(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT);
-//        HashMap<String, Object> timestampEdit = new HashMap<String, Object>();
-//        timestampEdit.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
-//        listsRef.updateChildren(timestampEdit);
     }
 
     /**
@@ -278,7 +297,7 @@ public class TherapyListContentActivity extends BaseActivity {
      */
     public void showEditListNameDialog() {
         /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = EditListNameDialogFragment.newInstance(mTherapyList, mListId);
+        DialogFragment dialog = EditListNameDialogFragment.newInstance(therapyList, mListId);
         dialog.show(this.getFragmentManager(), "EditListNameDialogFragment");
     }
 

@@ -336,9 +336,10 @@
             android:id="@+id/edit_text_hz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="@string/hint_add_frequency"
             android:imeOptions="actionDone|flagNoExtractUi"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_grey" />
 
@@ -371,9 +372,10 @@
             android:id="@+id/edit_text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="@string/hint_add_time"
             android:imeOptions="actionDone|flagNoExtractUi"
-            android:inputType="numberSigned"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_grey" />
 
