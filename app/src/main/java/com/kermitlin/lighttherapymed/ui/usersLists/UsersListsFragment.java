@@ -1,4 +1,4 @@
-package com.kermitlin.lighttherapymed.ui.deployedLists;
+package com.kermitlin.lighttherapymed.ui.usersLists;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,12 +10,14 @@ import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
+import com.kermitlin.lighttherapymed.model.User;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
-public class DeployedListsFragment extends Fragment {
+public class UsersListsFragment extends Fragment {
+    private UsersListAdapter mUsersListAdapter;
     private ListView mListView;
 
-    public DeployedListsFragment() {
+    public UsersListsFragment() {
         /* Required empty public constructor */
     }
 
@@ -23,8 +25,8 @@ public class DeployedListsFragment extends Fragment {
      * Create fragment and pass bundle with data as it's arguments
      * Right now there are not arguments...but eventually there will be.
      */
-    public static DeployedListsFragment newInstance() {
-        DeployedListsFragment fragment = new DeployedListsFragment();
+    public static UsersListsFragment newInstance() {
+        UsersListsFragment fragment = new UsersListsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -46,25 +48,25 @@ public class DeployedListsFragment extends Fragment {
         /**
          * Initialize UI elements
          */
-        View rootView = inflater.inflate(R.layout.fragment_active_pat_lists, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_deployed_lists, container, false);
         initializeScreen(rootView);
 
         /**
          * Create Firebase references
          */
-        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
+        Firebase usersListsRef = new Firebase(Constants.FIREBASE_URL_USERS);
 
-//        /**
-//         * Add ValueEventListeners to Firebase references
-//         * to control get data and control behavior and visibility of elements
-//         */
-//        mActiveListAdapter = new ActiveListAdapter(getActivity(), ShoppingList.class,
-//                R.layout.single_therapy_list, activeListsRef);
-//
-//        /**
-//         * Set the adapter to the mListView
-//         */
-//        mListView.setAdapter(mActiveListAdapter);
+        /**
+         * Add ValueEventListeners to Firebase references
+         * to control get data and control behavior and visibility of elements
+         */
+        mUsersListAdapter = new UsersListAdapter(getActivity(), User.class,
+                R.layout.single_users_list, usersListsRef);
+
+        /**
+         * Set the adapter to the mListView
+         */
+        mListView.setAdapter(mUsersListAdapter);
 
         /**
          * Set interactive bits, such as click events and adapters
@@ -92,7 +94,7 @@ public class DeployedListsFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        mActiveListAdapter.cleanup();
+        mUsersListAdapter.cleanup();
     }
 
     /**

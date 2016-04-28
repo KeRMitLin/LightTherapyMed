@@ -13,8 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kermitlin.lighttherapymed.R;
-import com.kermitlin.lighttherapymed.ui.deployedLists.DeployedListsFragment;
-import com.kermitlin.lighttherapymed.ui.deployedLists.AddDeployedListDialogFragment;
+import com.kermitlin.lighttherapymed.ui.usersLists.UsersListsFragment;
 import com.kermitlin.lighttherapymed.ui.therapyLists.AddTherapyListDialogFragment;
 import com.kermitlin.lighttherapymed.ui.therapyLists.TherapyListsFragment;
 
@@ -72,12 +71,6 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void showAddDeployedListDialog(View view) {
-        /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = AddDeployedListDialogFragment.newInstance();
-        dialog.show(MainActivity.this.getFragmentManager(), "AddDeployedListDialogFragment");
-    }
-
     /**
      * Create an instance of the AddMeal dialog fragment and show it
      */
@@ -108,13 +101,13 @@ public class MainActivity extends BaseActivity {
              */
             switch (position) {
                 case 0:
-                    fragment = DeployedListsFragment.newInstance();
+                    fragment = UsersListsFragment.newInstance();
                     break;
                 case 1:
                     fragment = TherapyListsFragment.newInstance();
                     break;
                 default:
-                    fragment = DeployedListsFragment.newInstance();
+                    fragment = UsersListsFragment.newInstance();
                     break;
             }
 
@@ -135,7 +128,7 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.pager_title_deployed_lists);
+                    return getString(R.string.pager_title_users_lists);
                 case 1:
                 default:
                     return getString(R.string.pager_title_therapy_lists);

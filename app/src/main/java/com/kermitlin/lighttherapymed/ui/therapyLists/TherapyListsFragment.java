@@ -56,14 +56,14 @@ public class TherapyListsFragment extends Fragment {
         /**
          * Create Firebase references
          */
-        Firebase activeListsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
+        Firebase therapyListsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
 
         /**
          * Add ValueEventListeners to Firebase references
          * to control get data and control behavior and visibility of elements
          */
         mTherapyListAdapter = new TherapyListAdapter(getActivity(), TherapyList.class,
-                R.layout.single_therapy_list, activeListsRef);
+                R.layout.single_therapy_list, therapyListsRef);
 
         /**
          * Set the adapter to the mListView

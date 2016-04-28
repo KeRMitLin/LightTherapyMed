@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".ActivePatListsFragment">
+    tools:context=".DeployedListsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,20 +20,4 @@
             android:scrollbars="none" />
 
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/fab"
-        style="@style/FAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="showAddDeployedListDialog"
-        android:src="@drawable/icon_add"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:rippleColor="@android:color/white" />
 </RelativeLayout>
