@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class TherapyList {
     private String listName;
-    private Boolean toggleSwitch;
+    private HashMap<String, User> usersSwitchOn;
     private HashMap<String, Object> timestampEdit;
 
     /**
@@ -27,9 +27,9 @@ public class TherapyList {
      *
      * @param listName
      */
-    public TherapyList(String listName, boolean toggleSwitch, HashMap<String, Object> timestampEdit) {
+    public TherapyList(String listName, HashMap<String, Object> timestampEdit) {
         this.listName = listName;
-        this.toggleSwitch = toggleSwitch;
+        this.usersSwitchOn = new HashMap<>();
         this.timestampEdit = timestampEdit;
     }
 
@@ -37,8 +37,8 @@ public class TherapyList {
         return listName;
     }
 
-    public boolean isToggleSwitch() {
-        return toggleSwitch;
+    public HashMap getUsersSwitchOn() {
+        return usersSwitchOn;
     }
 
     public HashMap<String, Object> getTimestampEdit() {

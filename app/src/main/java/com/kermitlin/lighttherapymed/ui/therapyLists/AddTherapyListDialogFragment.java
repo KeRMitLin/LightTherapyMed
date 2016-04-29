@@ -119,8 +119,7 @@ public class AddTherapyListDialogFragment extends DialogFragment {
             timestampEdit.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
             /* Build the shopping list */
-            TherapyList newTherapyList = new TherapyList(userEnteredName, true,
-                    timestampEdit);
+            TherapyList newTherapyList = new TherapyList(userEnteredName, timestampEdit);
 
             /* Add the shopping list */
             newListRef.setValue(newTherapyList);

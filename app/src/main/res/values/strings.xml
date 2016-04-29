@@ -7,6 +7,8 @@
     <string name="app_name">LightTherapyMed</string>
     <string name="pager_title_users_lists">Users Lists</string>
     <string name="pager_title_therapy_lists">Therapy Lists</string>
+    <string name="pager_title_deployed_lists">Deployed Lists</string>
+    <string name="pager_title_operating_lists">Operating Lists</string>
     <string name="remove_item_option">Remove Item</string>
     <string name="positive_button_create">Create</string>
     <string name="text_you">You</string>
@@ -47,6 +49,7 @@
       -->
     <!-- Activity Title  -->
     <string name="title_activity_list_details">List Details</string>
+    <string name="title_activity_deployed">List Deployed</string>
 
     <!-- Menu Items -->
     <string name="action_edit_list_name">Edit list name</string>
