@@ -11,8 +11,9 @@ import java.util.HashMap;
 
 public class TherapyList {
     private String listName;
-    private HashMap<String, User> usersSwitchOn;
+    private HashMap<String, User> usersDeployed;
     private HashMap<String, Object> timestampEdit;
+    private boolean switchOn;
 
     /**
      * Required public constructor
@@ -20,25 +21,16 @@ public class TherapyList {
     public TherapyList() {
     }
 
-    /**
-     * Use this constructor to create new ShoppingLists.
-     * Takes shopping list listName and owner. Set's the last
-     * changed time to what is stored in ServerValue.TIMESTAMP
-     *
-     * @param listName
-     */
+
     public TherapyList(String listName, HashMap<String, Object> timestampEdit) {
         this.listName = listName;
-        this.usersSwitchOn = new HashMap<>();
         this.timestampEdit = timestampEdit;
+        this.usersDeployed = new HashMap<>();
+        this.switchOn = true;
     }
 
     public String getListName() {
         return listName;
-    }
-
-    public HashMap getUsersSwitchOn() {
-        return usersSwitchOn;
     }
 
     public HashMap<String, Object> getTimestampEdit() {
@@ -48,6 +40,14 @@ public class TherapyList {
     @JsonIgnore
     public long getTimestampEditLong() {
         return (long) timestampEdit.get(Constants.FIREBASE_PROPERTY_TIMESTAMP);
+    }
+
+    public HashMap getUsersDeployed() {
+        return usersDeployed;
+    }
+
+    public boolean isSwitchOn() {
+        return switchOn;
     }
 }
 

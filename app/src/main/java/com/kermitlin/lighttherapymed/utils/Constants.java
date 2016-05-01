@@ -25,6 +25,7 @@ public final class Constants {
     public static final String FIREBASE_PROPERTY_LIST_NAME = "listName";
     public static final String FIREBASE_PROPERTY_TIMESTAMP_EDIT = "timestampEdit";
     public static final String FIREBASE_PROPERTY_TIMESTAMP = "timestamp";
+    public static final String FIREBASE_PROPERTY_USERS_DEPLOYED = "usersDeployed";
     public static final String FIREBASE_PROPERTY_TOGGLE_SWITCH = "toggleSwitch";
     public static final String FIREBASE_PROPERTY_EMAIL = "email";
     public static final String FIREBASE_PROPERTY_USER_HAS_VERIFIED_MAIL = "hasVerifiedMail";
@@ -38,6 +39,7 @@ public final class Constants {
     public static final String FIREBASE_URL_THERAPY_LISTS = FIREBASE_URL + "/" + FIREBASE_LOCATION_THERAPY_LISTS;
     public static final String FIREBASE_URL_USERS = FIREBASE_URL + "/" + FIREBASE_LOCATION_USERS;
 
+
     /**
      * Constants for bundles, extras and shared preferences keys
      */
@@ -48,6 +50,7 @@ public final class Constants {
     public static final String KEY_LIST_ITEM_ID = "LIST_ITEM_ID";
     public static final String KEY_PROVIDER = "PROVIDER";
     public static final String KEY_ENCODED_EMAIL = "ENCODED_EMAIL";
+    public static final String KEY_USER = "USER";
     public static final String KEY_LIST_OWNER = "LIST_OWNER";
     public static final String KEY_SIGNUP_EMAIL = "SIGNUP_EMAIL";
 

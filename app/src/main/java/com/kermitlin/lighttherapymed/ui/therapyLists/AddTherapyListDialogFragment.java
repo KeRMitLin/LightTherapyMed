@@ -108,9 +108,6 @@ public class AddTherapyListDialogFragment extends DialogFragment {
             Firebase listsRef = new Firebase(Constants.FIREBASE_URL_THERAPY_LISTS);
             Firebase newListRef = listsRef.push();
 
-            /* Save listsRef.push() to maintain same random Id */
-            final String listId = newListRef.getKey();
-
             /**
              * Set raw version of date to the ServerValue.TIMESTAMP value and save into
              * timestampCreatedMap

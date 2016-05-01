@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.model.TherapyList;
+import com.kermitlin.lighttherapymed.model.User;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
 public class DeployedListsFragment extends Fragment {
