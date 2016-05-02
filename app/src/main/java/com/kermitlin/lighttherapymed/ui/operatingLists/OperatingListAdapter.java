@@ -1,18 +1,14 @@
 package com.kermitlin.lighttherapymed.ui.operatingLists;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.model.TherapyList;
-import com.kermitlin.lighttherapymed.utils.Constants;
 import com.kermitlin.lighttherapymed.utils.Utils;
 
 import java.util.Date;
@@ -43,12 +39,19 @@ public class OperatingListAdapter extends FirebaseListAdapter<TherapyList> {
          */
         TextView textViewListName = (TextView) view.findViewById(R.id.text_view_list_name);
         TextView textViewEditTime = (TextView) view.findViewById(R.id.text_view_edit_time);
+        ImageView imageViewDeploy = (ImageView) view.findViewById(R.id.image_view_deploy);
 
         /* Set the list name and owner */
         textViewListName.setText(therapyList.getListName());
         textViewEditTime.setText(String.valueOf(Utils.SIMPLE_DATE_FORMAT.format(
                 new Date(therapyList.getTimestampEditLong()))));
 
-
+        if (therapyList.getUsersDeployed() != null) {
+            if (therapyList.getUsersDeployed().containsKey(mEncodedEmail)) {
+                imageViewDeploy.setVisibility(View.VISIBLE);
+            } else {
+                imageViewDeploy.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }

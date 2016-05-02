@@ -13,11 +13,14 @@ import android.widget.ListView;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ServerValue;
 import com.firebase.client.ValueEventListener;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.model.TherapyList;
 import com.kermitlin.lighttherapymed.model.User;
 import com.kermitlin.lighttherapymed.utils.Constants;
+
+import java.util.HashMap;
 
 public class OperatingListsFragment extends Fragment {
     private static final String LOG_TAG = OperatingListsFragment.class.getSimpleName();
@@ -111,14 +114,26 @@ public class OperatingListsFragment extends Fragment {
                         child(listId).child(Constants.FIREBASE_PROPERTY_USERS_DEPLOYED).
                         child(mEncodedEmail);
 
+                Firebase deployedListsRef = new Firebase(Constants.FIREBASE_URL_DEPLOYED_LISTS).
+                        child(mEncodedEmail).child(listId);
+
                 //Not deployed
                 if (iv.getVisibility() == View.INVISIBLE) {
                     usersDeployedRef.setValue(mSelectUser);
 
+                    HashMap<String, Object> changedTimestampMap = new HashMap<>();
+                    changedTimestampMap.put(Constants.FIREBASE_PROPERTY_TIMESTAMP,
+                            mOperatingListAdapter.getItem(position).getTimestampEditLong());
+
+                    TherapyList selectTherapy = new TherapyList(mOperatingListAdapter.
+                            getItem(position).getListName(), changedTimestampMap);
+
+                    deployedListsRef.setValue(selectTherapy);
+
                     iv.setVisibility(View.VISIBLE);
                 } else {
                     usersDeployedRef.removeValue();
-
+                    deployedListsRef.removeValue();
                     iv.setVisibility(View.INVISIBLE);
                 }
             }
