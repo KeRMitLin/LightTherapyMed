@@ -26,7 +26,7 @@ public final class Constants {
     public static final String FIREBASE_PROPERTY_TIMESTAMP_EDIT = "timestampEdit";
     public static final String FIREBASE_PROPERTY_TIMESTAMP = "timestamp";
     public static final String FIREBASE_PROPERTY_USERS_DEPLOYED = "usersDeployed";
-    public static final String FIREBASE_PROPERTY_TOGGLE_SWITCH = "toggleSwitch";
+    public static final String FIREBASE_PROPERTY_SWITCH_ON = "switchOn";
     public static final String FIREBASE_PROPERTY_EMAIL = "email";
     public static final String FIREBASE_PROPERTY_USER_HAS_VERIFIED_MAIL = "hasVerifiedMail";
 

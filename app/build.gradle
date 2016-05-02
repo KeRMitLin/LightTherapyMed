@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.kermitlin.lighttherapymed"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -19,8 +19,8 @@ android {
         }
     }
 
-    buildTypes.each{
-        it.buildConfigField 'String','UNIQUE_FIREBASE_ROOT_URL', UniqueFirebaseRootUrl
+    buildTypes.each {
+        it.buildConfigField 'String', 'UNIQUE_FIREBASE_ROOT_URL', UniqueFirebaseRootUrl
     }
 
     packagingOptions {
@@ -31,16 +31,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
-
     /* For Firebase Services */
-    compile 'com.firebase:firebase-client-android:2.4.0'
-    compile 'com.firebaseui:firebase-ui:0.2.2'
-
+    compile 'com.firebaseui:firebase-ui:0.3.1'
+    compile 'com.firebase:firebase-client-android:2.5.2'
     /* For Google Play Services */
     compile 'com.google.android.gms:play-services-safetynet:8.3.0'
     compile 'com.google.android.gms:play-services-auth:8.3.0'

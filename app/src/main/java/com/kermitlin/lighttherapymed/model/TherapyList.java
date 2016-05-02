@@ -22,7 +22,7 @@ public class TherapyList {
     }
 
 
-    public TherapyList(String listName, HashMap<String, Object> timestampEdit) {
+    public TherapyList(String listName, boolean switchOn, HashMap<String, Object> timestampEdit) {
         this.listName = listName;
         this.timestampEdit = timestampEdit;
         this.usersDeployed = new HashMap<>();

@@ -29,7 +29,7 @@ public class TherapyListAdapter extends FirebaseListAdapter<TherapyList> {
      * populateView also handles data changes and updates the listView accordingly
      */
     @Override
-    protected void populateView(View view, TherapyList list) {
+    protected void populateView(View view, TherapyList list, int i) {
 
         /**
          * Grab the needed Textivews and strings

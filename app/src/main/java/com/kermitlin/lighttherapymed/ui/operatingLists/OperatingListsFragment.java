@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ServerValue;
 import com.firebase.client.ValueEventListener;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.model.TherapyList;
@@ -64,7 +63,7 @@ public class OperatingListsFragment extends Fragment {
         /**
          * Initialize UI elements
          */
-        View rootView = inflater.inflate(R.layout.fragment_deployed_lists, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_operating_lists, container, false);
         initializeScreen(rootView);
 
         /**
@@ -126,7 +125,7 @@ public class OperatingListsFragment extends Fragment {
                             mOperatingListAdapter.getItem(position).getTimestampEditLong());
 
                     TherapyList selectTherapy = new TherapyList(mOperatingListAdapter.
-                            getItem(position).getListName(), changedTimestampMap);
+                            getItem(position).getListName(), true, changedTimestampMap);
 
                     deployedListsRef.setValue(selectTherapy);
 

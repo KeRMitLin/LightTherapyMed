@@ -6,13 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 import com.kermitlin.lighttherapymed.R;
 import com.kermitlin.lighttherapymed.model.TherapyList;
-import com.kermitlin.lighttherapymed.model.User;
 import com.kermitlin.lighttherapymed.utils.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeployedListsFragment extends Fragment {
     private DeployedListAdapter mDeployedListAdapter;
@@ -75,20 +78,29 @@ public class DeployedListsFragment extends Fragment {
         /**
          * Set interactive bits, such as click events and adapters
          */
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                User selectedList = mDeployedListAdapter.getItem(position);
-//                if (selectedList != null) {
-//                    Intent intent = new Intent(getActivity(), DeployedActivity.class);
-//                    /* Get the list ID using the adapter's get ref method to get the Firebase
-//                     * ref and then grab the key.
-//                     */
-//                    String encodedEmail = mDeployedListAdapter.getRef(position).getKey();
-//                    intent.putExtra(Constants.KEY_ENCODED_EMAIL, encodedEmail);
-//                    /* Starts an active showing the details for the selected list */
-//                    startActivity(intent);
-//                }
+                String listId = mDeployedListAdapter.getRef(position).getKey();
+                ImageView iv = (ImageView) view.findViewById(R.id.image_view_switch);
+
+                Firebase deployedListRef = new Firebase(Constants.FIREBASE_URL_DEPLOYED_LISTS).
+                        child(mEncodedEmail).child(listId);
+
+                if (mDeployedListAdapter.getItem(position).isSwitchOn()) {
+                    HashMap<String, Object> toggleIsSwitchOnMap = new HashMap<>();
+                    toggleIsSwitchOnMap.put(Constants.FIREBASE_PROPERTY_SWITCH_ON, false);
+
+                    deployedListRef.updateChildren(toggleIsSwitchOnMap);
+                    iv.setImageResource(R.drawable.ic_lock);
+                } else {
+                    HashMap<String, Object> toggleIsSwitchOnMap = new HashMap<>();
+                    toggleIsSwitchOnMap.put(Constants.FIREBASE_PROPERTY_SWITCH_ON, true);
+
+                    deployedListRef.updateChildren(toggleIsSwitchOnMap);
+                    iv.setImageResource(R.drawable.ic_unlock);
+                }
             }
         });
 

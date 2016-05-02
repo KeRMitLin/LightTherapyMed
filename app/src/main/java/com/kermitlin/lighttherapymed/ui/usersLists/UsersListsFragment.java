@@ -50,7 +50,7 @@ public class UsersListsFragment extends Fragment {
         /**
          * Initialize UI elements
          */
-        View rootView = inflater.inflate(R.layout.fragment_deployed_lists, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_users_lists, container, false);
         initializeScreen(rootView);
 
         /**

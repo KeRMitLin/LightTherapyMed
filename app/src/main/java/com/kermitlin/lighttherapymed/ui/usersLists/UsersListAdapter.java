@@ -29,7 +29,7 @@ public class UsersListAdapter extends FirebaseListAdapter<User> {
      * populateView also handles data changes and updates the listView accordingly
      */
     @Override
-    protected void populateView(View view, User user) {
+    protected void populateView(View view, User user, int i) {
 
         /**
          * Grab the needed Textivews and strings

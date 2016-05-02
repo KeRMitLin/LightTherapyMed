@@ -58,4 +58,12 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/image_view_switch"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_little"
+        android:layout_centerVertical="true" />
+
 </RelativeLayout>
