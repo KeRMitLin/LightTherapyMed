@@ -4,7 +4,7 @@
     == Base Strings For the App ==
 
      -->
-    <string name="app_name">LightTherapyMed</string>
+    <string name="app_name">行動光療機（醫師端）</string>
     <string name="pager_title_users_lists">Users Lists</string>
     <string name="pager_title_therapy_lists">Therapy Lists</string>
     <string name="pager_title_deployed_lists">Deployed Lists</string>

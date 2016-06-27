@@ -72,11 +72,14 @@ public class AddListContentDialogFragment extends AddListItemDialogFragment {
                     child(mListId);
             Firebase newListRef = mInsertRef.push();
 
+            String contentListId = newListRef.getKey();
+
             /* Build the shopping list */
             TherapyListContent newTherapyListContent = new TherapyListContent(mSelectColor, userEnteredHz, userEnteredTime);
 
             /* Add the shopping list */
             newListRef.setValue(newTherapyListContent);
+
 
             /**
              * Refresh listName and editTime in TherapyList
@@ -93,6 +96,9 @@ public class AddListContentDialogFragment extends AddListItemDialogFragment {
             updatedProperties.put(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT, changedTimestampMap);
 
             listsRef.updateChildren(updatedProperties);
+
+
+
 
             /* Close the dialog fragment */
             AddListContentDialogFragment.this.getDialog().cancel();

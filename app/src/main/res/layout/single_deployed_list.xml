@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/image_view_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_therapy_list_temp" />
 
@@ -32,7 +32,8 @@
             android:id="@+id/text_view_list_name"
             style="@style/ListItemText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/edit_time"
@@ -63,7 +64,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/margin_little"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_little" />
 
 </RelativeLayout>
