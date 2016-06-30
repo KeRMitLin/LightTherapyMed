@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_weight=".1"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/remove_item_option"
+        android:contentDescription="@string/action_remove_item"
         android:src="@drawable/ic_action_remove"
         android:visibility="visible" />
 </LinearLayout>

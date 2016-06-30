@@ -47,14 +47,14 @@ public class RemoveListDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomTheme_Dialog)
                 .setTitle(getActivity().getResources().getString(R.string.action_remove_list))
                 .setMessage(getString(R.string.dialog_message_are_you_sure_remove_list))
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.positive_button_delete_item, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         removeList();
                         /* Dismiss the dialog */
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.negative_button_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         /* Dismiss the dialog */
                         dialog.dismiss();

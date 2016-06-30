@@ -76,9 +76,9 @@ public class TherapyListContentAdapter extends FirebaseListAdapter<TherapyListCo
             public void onClick(View v) {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mActivity, R.style.CustomTheme_Dialog)
-                        .setTitle(mActivity.getString(R.string.remove_item_option))
+                        .setTitle(mActivity.getString(R.string.action_remove_item))
                         .setMessage(mActivity.getString(R.string.dialog_message_are_you_sure_remove_item))
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.positive_button_delete_item, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 removeItem(itemToRemoveId);
@@ -86,7 +86,7 @@ public class TherapyListContentAdapter extends FirebaseListAdapter<TherapyListCo
                                 dialog.dismiss();
                             }
                         })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.negative_button_cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 /* Dismiss the dialog */
                                 dialog.dismiss();
