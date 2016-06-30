@@ -112,6 +112,7 @@ public class MainActivity extends BaseActivity {
             }
 
             return fragment;
+
         }
 
         @Override
