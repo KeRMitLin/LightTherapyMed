@@ -23,6 +23,7 @@
     <string name="hint_add_frequency">Enter Frequency</string>
     <string name="hint_add_time">Enter Continues time</string>
 
+
     <!-- Deployed Activity -->
     <string name="title_activity_list_details">List Details</string>
 
