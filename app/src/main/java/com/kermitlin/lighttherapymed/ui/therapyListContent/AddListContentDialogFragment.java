@@ -2,17 +2,11 @@ package com.kermitlin.lighttherapymed.ui.therapyListContent;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.firebase.client.Firebase;
-import com.firebase.client.Query;
 import com.firebase.client.ServerValue;
 import com.kermitlin.lighttherapymed.R;
-import com.kermitlin.lighttherapymed.model.TherapyList;
 import com.kermitlin.lighttherapymed.model.TherapyListContent;
-import com.kermitlin.lighttherapymed.ui.therapyLists.AddTherapyListDialogFragment;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
 import java.util.HashMap;
@@ -20,7 +14,7 @@ import java.util.HashMap;
 /**
  * Adds a new active pat list
  */
-public class AddListContentDialogFragment extends AddListItemDialogFragment {
+public class AddListContentDialogFragment extends EditListContentDialogFragment {
     private static final String LOG_TAG = TherapyListContent.class.getSimpleName();
 
     /**
@@ -29,7 +23,7 @@ public class AddListContentDialogFragment extends AddListItemDialogFragment {
      */
     public static AddListContentDialogFragment newInstance(String listId, String listName) {
         AddListContentDialogFragment addListContentDialogFragment = new AddListContentDialogFragment();
-        Bundle bundle = AddListItemDialogFragment.newInstanceHelper(R.layout.dialog_add_list_content,
+        Bundle bundle = EditListContentDialogFragment.newInstanceHelper(R.layout.dialog_add_list_content,
                 listId, listName);
         bundle.putString(Constants.KEY_LIST_ID, listId);
         bundle.putString(Constants.KEY_LIST_NAME, listName);
@@ -96,9 +90,6 @@ public class AddListContentDialogFragment extends AddListItemDialogFragment {
             updatedProperties.put(Constants.FIREBASE_PROPERTY_TIMESTAMP_EDIT, changedTimestampMap);
 
             listsRef.updateChildren(updatedProperties);
-
-
-
 
             /* Close the dialog fragment */
             AddListContentDialogFragment.this.getDialog().cancel();

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "230457866054",
+    "firebase_url": "https://lighttherapy2temp.firebaseio.com",
+    "project_id": "lighttherapy2temp",
+    "storage_bucket": "lighttherapy2temp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230457866054:android:77999819d87a443a",
+        "android_client_info": {
+          "package_name": "com.kermitlin.lighttherapymed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230457866054-nrcjhblnmklupdl83j50ni5ksp1oumad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClq7elyMyGKJA2SOIt6FPSi6OBA1w63fE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

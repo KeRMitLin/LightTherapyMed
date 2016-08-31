@@ -16,8 +16,18 @@
     <!-- Add List Dialog Strings -->
     <string name="hint_add_therapy_list">新增療程</string>
     <string name="positive_button_create">新增</string>
+
+    <!-- Add List Detail Dialog Strings -->
+    <string name="title_set_color">顏色設定：</string>
+    <string name="title_set_brightness">亮度設定(1~10)：</string>
+    <string name="title_set_frequency">頻率設定：</string>
+    <string name="title_set_time">時間設定：</string>
+    <string name="hint_add_brightness">輸入亮度</string>
     <string name="hint_add_frequency">輸入頻率</string>
     <string name="hint_add_time">輸入持續時間</string>
+    <string name="unit_brightness"> 階</string>
+    <string name="unit_frequency"> Hz</string>
+    <string name="unit_time"> 秒</string>
 
     <!-- Deployed Activity Strings -->
     <string name="title_activity_list_details">病患療程設定</string>

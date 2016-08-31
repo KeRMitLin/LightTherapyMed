@@ -3,7 +3,6 @@ package com.kermitlin.lighttherapymed.ui.therapyListContent;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -14,13 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.kermitlin.lighttherapymed.R;
-import com.kermitlin.lighttherapymed.model.TherapyList;
 import com.kermitlin.lighttherapymed.utils.Constants;
 
 /**
  * Base class for {@link DialogFragment}s involved with editing a shopping list.
  */
-public abstract class AddListItemDialogFragment extends DialogFragment {
+public abstract class EditListContentDialogFragment extends DialogFragment {
     String mListId;
     Button bt_red, bt_orange, bt_yellow, bt_green, bt_blue, bt_purple, bt_black, bt_white, bt_random;
     ImageView check_red, check_orange, check_yellow, check_green, check_blue, check_purple, check_black,
@@ -251,7 +249,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
                         /**
                          * Close the dialog fragment
                          */
-                        AddListItemDialogFragment.this.getDialog().cancel();
+                        EditListContentDialogFragment.this.getDialog().cancel();
                     }
                 })
                 .setNegativeButton(R.string.negative_button_cancel, new DialogInterface.OnClickListener() {
@@ -261,7 +259,7 @@ public abstract class AddListItemDialogFragment extends DialogFragment {
                         /**
                          * Close the dialog fragment
                          */
-                        AddListItemDialogFragment.this.getDialog().cancel();
+                        EditListContentDialogFragment.this.getDialog().cancel();
                     }
                 });
 

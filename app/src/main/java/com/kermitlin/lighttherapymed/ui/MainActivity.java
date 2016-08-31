@@ -57,8 +57,6 @@ public class MainActivity extends BaseActivity {
     public void initializeScreen() {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         /**
          * Create SectionPagerAdapter, set it as adapter to viewPager with setOffscreenPageLimit(2)
          **/

@@ -14,7 +14,7 @@
         style="@style/ListItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Color:" />
+        android:text="@string/title_set_color" />
 
     <LinearLayout
         android:id="@+id/layout_color_button_1"
@@ -258,7 +258,7 @@
         android:id="@+id/layout_check_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_view_hz"
+        android:layout_above="@+id/text_view_bright"
         android:layout_below="@+id/layout_color_button_2"
         android:paddingEnd="@dimen/margin_small"
         android:paddingStart="@dimen/margin_small">
@@ -317,12 +317,49 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_view_hz"
+        android:id="@+id/text_view_bright"
         style="@style/ListItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_color_button_3"
-        android:text="Frequency:" />
+        android:text="@string/title_set_brightness" />
+
+    <LinearLayout
+        android:id="@+id/layout_bright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_bright"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_bright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/hint_add_brightness"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text=" 階"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/list_edit_time_text_size" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_view_hz"
+        style="@style/ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_bright"
+        android:text="@string/title_set_frequency" />
 
     <LinearLayout
         android:id="@+id/layout_hz"
@@ -338,7 +375,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/hint_add_frequency"
-            android:imeOptions="actionDone|flagNoExtractUi"
+            android:imeOptions="actionNext|flagNoExtractUi"
             android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_grey" />
@@ -347,7 +384,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text=" Hz"
+            android:text="@string/unit_frequency"
             android:textColor="@color/light_black"
             android:textSize="@dimen/list_edit_time_text_size" />
 
@@ -359,7 +396,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_hz"
-        android:text="Continues Time:" />
+        android:text="@string/title_set_time" />
 
     <LinearLayout
         android:id="@+id/layout_time"
@@ -383,7 +420,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text=" 秒"
+            android:text="@string/unit_time"
             android:textColor="@color/light_black"
             android:textSize="@dimen/list_edit_time_text_size" />
 
