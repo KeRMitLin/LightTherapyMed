@@ -42,6 +42,7 @@
     <string name="dialog_message_are_you_sure_remove_list">確定刪除這筆療程?</string>
     <string name="dialog_message_are_you_sure_remove_item">確定刪除這筆項目?</string>
 
+
     <!-- Option Menu Strings -->
     <string name="action_settings">設定</string>
 
